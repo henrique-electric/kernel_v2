@@ -1,8 +1,16 @@
+CC = gcc
+CC_FLAGS = -m32 -nostdlib -fno-pic -ffreestanding -c 
+LINKER_FLAGS = -m elf32
+OBJ = build/kernel.o
+
+.PHONY: clean
+
 all: kernel.o boot
-	ld -m elf_i386 -T linker.ld build/kernel.o -o kernel.o
+	ld $(LINKER_FLAGS) -T linker.ld $(OBJ) -o kernel.o
+		
 
 kernel.o: src/kernel/main.c
-	gcc -m32 -nostdlib -fno-pic -ffreestanding -c src/kernel/main.c -o build/kernel.o
+	$(CC) $(CC_FLAGS) src/kernel/main.c -o build/kernel.o
 
 boot: src/bootloader/boot.asm
 	nasm -f bin src/bootloader/boot.asm -o build/boot.bin
@@ -10,3 +18,7 @@ boot: src/bootloader/boot.asm
 
 test_boot: boot kernel.o
 	qemu-system-i386 build/boot.bin
+
+clean:
+	@rm build/*
+	@echo "Cleaned the workstation"
