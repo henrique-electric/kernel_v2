@@ -4,7 +4,10 @@ org 0x7c00
 ;; Core
 __init:
     call __load_gdt
-    
+
+
+__load_kernel:
+    ;; TODO
 
 __load_gdt:
     cli
