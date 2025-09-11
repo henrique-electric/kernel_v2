@@ -1,7 +1,4 @@
 #pragma once
-
-
-#include <types.h>
 #include <stdint.h>
 
 #pragma packed
