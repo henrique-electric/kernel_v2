@@ -1,3 +1,5 @@
-int kmain(void) {
-    return 0;
+void kmain(void) {
+    while (1) {
+        
+    }
 }
