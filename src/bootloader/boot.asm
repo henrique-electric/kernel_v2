@@ -23,7 +23,7 @@ __load_kernel:
     mov ah, 0x02    ; Read disk code
     mov al, 0x01    ; Read one sector
     mov ch, 0x00    ; Cylinder 0
-    mov cl, 0x02    ; Sector two
+    mov cl, 0x03    ; Sector two
     mov dh, 0x00    ; Head 0
     mov dl, 0x80    ; Default disk
     int 0x13
