@@ -16,5 +16,5 @@ void set_entry(uint32_t handler, uint16_t index) {
 }
 
 void load_idt(void) {
-    asm volatile("lidt (%0)" : : "r" (&handlers));
+    asm volatile("lidt (%0)" : : "r" (&idt_table));
 }
