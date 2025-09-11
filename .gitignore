@@ -3,3 +3,6 @@
 build
 disk.img
 *.out
+*.iso
+
+iso/boot/kernel.elf

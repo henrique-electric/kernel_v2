@@ -1,9 +1,6 @@
-OUTPUT_FORMAT(binary)
-ENTRY(kmain)
-
+ENTRY(__entry)
 
 SECTIONS {
-    . = 0x1000;
     .text :
     {
         *(.text)
@@ -17,5 +14,10 @@ SECTIONS {
     .bss : 
     {
         *(.bss)
+    }
+
+    .multiboot :
+    {
+        *(.multiboot)
     }
 }
