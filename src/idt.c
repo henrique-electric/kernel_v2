@@ -1,6 +1,6 @@
 #include <idt.h>
 
-static struct gate_descriptor handlers[3];
+static struct gate_descriptor handlers[256];
 
 static struct idtr idt_table = {
     .size = (uint32_t) sizeof(handlers) - 1,
