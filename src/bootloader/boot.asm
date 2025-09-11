@@ -7,6 +7,14 @@ __init:
 
 
 __load_kernel:
+    ;; +++++++++++++++++++++++++++++++++
+    ;;   Convert LBA layout to CHS
+    ;; +++++++++++++++++++++++++++++++++
+    ;; Sector = (LBA % Sector) + 1
+    ;; Head = (LBA / Sector) % Heads
+    ;; Cylinder = LBA / (Sector * Heads)
+
+
     mov ax, 0x1000      ; Where to load the kernel
     mov es, ax          ; set ES segment register to 0x1000 (where kernel will get loaded)
     mov bx, 0x0000      ; 0x0000 offset on the 0x1000 segment 
@@ -15,7 +23,7 @@ __load_kernel:
     mov ah, 0x02    ; Read disk code
     mov al, 0x01    ; Read one sector
     mov ch, 0x00    ; Cylinder 0
-    mov cl, 0x02    ; Sector two
+    mov cl, 0x03    ; Sector two
     mov dh, 0x00    ; Head 0
     mov dl, 0x80    ; Default disk
     int 0x13
