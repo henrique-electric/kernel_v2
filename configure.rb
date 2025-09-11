@@ -1,1 +1,1 @@
-qemu_out = %x{qemu-img create -f qcow2 disk.img 256M}
+qemu_out = %x{qemu-img create -f raw disk.img 256M}
