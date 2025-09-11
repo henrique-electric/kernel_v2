@@ -3,11 +3,34 @@ org 0x7c00
 
 ;; Core
 __init:
-    call __load_gdt
+    jmp __load_kernel
 
 
 __load_kernel:
+    mov ax, 0x1000      ; Where to load the kernel
+    mov es, ax          ; set ES segment register to 0x1000 (where kernel will get loaded)
+    mov bx, 0x0000      ; 0x0000 offset on the 0x1000 segment 
+
+
+    mov ah, 0x02    ; Read disk code
+    mov al, 0x01    ; Read one sector
+    mov ch, 0x00    ; Cylinder 0
+    mov cl, 0x02    ; Sector two
+    mov dh, 0x00    ; Head 0
+    mov dl, 0x80    ; Default disk
+    int 0x13
+
+    cmp ah, 0
+    jne .err_read
+
+    mov si, load_success_msg
+    call __puts
+    jmp __trap
     ;; TODO
+    .err_read:
+        mov si, error_load_kernel_msg
+        call __puts
+        jmp __trap
 
 __load_gdt:
     cli
@@ -69,9 +92,10 @@ __puts:
 __trap:
     jmp __trap
 ;;
-
+error_load_kernel_msg: db "Error loading the kernel", 0
 boot_entry_msg: db "Hello user!, starting the boot now : )", 0xa, 0, 
 loading_kernel_msg: db "Loading kernel on memory", 0xa, 0,
+load_success_msg: db "Loaded Kernel", 0
 loading_gdt_msg: db "Setting Global Descriptor Table", 0xA, 0 
 
 times 510 - ($ - $$) db 0
