@@ -1,6 +1,6 @@
 CC = gcc
 CC_FLAGS = -m32 -nostdlib -fno-pic -ffreestanding -c 
-LINKER_FLAGS = -m elf32
+LINKER_FLAGS = -m elf_i386
 OBJ = build/kernel.o
 
 .PHONY: clean
@@ -21,4 +21,5 @@ test_boot: boot kernel.o
 
 clean:
 	@rm build/*
+	@rm *.bin
 	@echo "Cleaned the workstation"
