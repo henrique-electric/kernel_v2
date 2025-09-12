@@ -8,7 +8,7 @@ ASM = nasm
 
 all:
 	$(ASM) -f elf32 src/kernel/entry.asm -o build/entry.o
-	$(ASM) -f elf32 src/kernel/isr0.asm -o build/isr0.o
+	$(ASM) -f elf32 src/kernel/isr.asm -o build/isr0.o
 	$(CC) $(CC_FLAGS) src/kernel/main.c -o build/kernel.o
 	$(CC) $(CC_FLAGS) src/kernel/gdt.c -o build/gdt.o
 	$(CC) $(CC_FLAGS) src/libc/puts.c -o build/puts.o
