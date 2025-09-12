@@ -4,5 +4,5 @@ build
 disk.img
 *.out
 *.iso
-
+.cache
 iso/boot/kernel.elf
