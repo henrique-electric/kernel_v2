@@ -7,7 +7,6 @@ static struct idtr idt_table = {
     .offset = (uint32_t) handlers
 };
 
-
 void handler_isr(int id) {
     return;
 }
@@ -22,7 +21,7 @@ void set_entry(uint32_t handler, uint8_t index) {
 
 extern void isr_0();
 void load_idt(void) {
-    for (uint8_t i = 0; i < 253; i++)
+    for (uint8_t i = 0; i < 255; i++)
         set_entry((uint32_t) isr_0, i);
     
     asm volatile("lidt (%0)" : : "m" (idt_table));
