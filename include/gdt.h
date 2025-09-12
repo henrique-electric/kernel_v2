@@ -15,4 +15,4 @@ struct gdt_table {
     uint32_t    offset;
 } __attribute__((packed));
 
-void load_gdt(void);
+extern void load_gdt(void);

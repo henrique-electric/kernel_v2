@@ -1,4 +1,5 @@
 #pragma once
 #include <stdint.h>
 
-void puts(char *str);
+extern void puts(char *str);
+extern void clear(void);
