@@ -1,5 +1,6 @@
 #include <stdint.h>
 
+extern uint16_t vga_count;
 
 void clear(void) {
     char *vga = (char*) 0xB8000;
@@ -7,4 +8,5 @@ void clear(void) {
         *vga = 0x00;
         vga++;
     }
+    vga_count = 0;
 }
