@@ -1,0 +1,70 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-m32",
+      "-fno-pic",
+      "-ffreestanding",
+      "-c",
+      "-fno-stack-protector",
+      "-Iinclude/",
+      "-o",
+      "build/kernel.o",
+      "src/kernel/main.c"
+    ],
+    "directory": "/home/baiano/Codes/Kernel",
+    "file": "/home/baiano/Codes/Kernel/src/kernel/main.c",
+    "output": "/home/baiano/Codes/Kernel/build/kernel.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-m32",
+      "-fno-pic",
+      "-ffreestanding",
+      "-c",
+      "-fno-stack-protector",
+      "-Iinclude/",
+      "-o",
+      "build/gdt.o",
+      "src/kernel/gdt.c"
+    ],
+    "directory": "/home/baiano/Codes/Kernel",
+    "file": "/home/baiano/Codes/Kernel/src/kernel/gdt.c",
+    "output": "/home/baiano/Codes/Kernel/build/gdt.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-m32",
+      "-fno-pic",
+      "-ffreestanding",
+      "-c",
+      "-fno-stack-protector",
+      "-Iinclude/",
+      "-o",
+      "build/puts.o",
+      "src/libc/puts.c"
+    ],
+    "directory": "/home/baiano/Codes/Kernel",
+    "file": "/home/baiano/Codes/Kernel/src/libc/puts.c",
+    "output": "/home/baiano/Codes/Kernel/build/puts.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-m32",
+      "-fno-pic",
+      "-ffreestanding",
+      "-c",
+      "-fno-stack-protector",
+      "-Iinclude/",
+      "-o",
+      "build/idt.o",
+      "src/kernel/idt.c"
+    ],
+    "directory": "/home/baiano/Codes/Kernel",
+    "file": "/home/baiano/Codes/Kernel/src/kernel/idt.c",
+    "output": "/home/baiano/Codes/Kernel/build/idt.o"
+  }
+]
