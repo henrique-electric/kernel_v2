@@ -8,8 +8,10 @@ static struct idtr idt_table = {
 };
 
 
-__attribute__((noreturn)) void test() {
-   asm volatile("cli; hlt");
+void handler_isr(int id) {
+    while(1) {
+
+    }
 }
 
 void set_entry(uint32_t handler, uint8_t index) {
@@ -20,10 +22,11 @@ void set_entry(uint32_t handler, uint8_t index) {
     handlers[index].offset_high = (handler >> 16) & 0xFFFF;    // upper 16 bits
 }
 
+extern void isr_0();
 void load_idt(void) {
-    for (uint8_t i = 0; i < 32; i++)
-        set_entry((uint32_t) test, i);
+    for (uint8_t i = 0; i < 256; i++)
+        set_entry((uint32_t) isr_0, i);
     
-    asm volatile("lidt %0" : : "r" (&idt_table));
+    asm volatile("lidt (%0)" : : "r" (&idt_table));
     asm volatile("sti");
 }
