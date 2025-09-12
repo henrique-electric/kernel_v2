@@ -1,12 +1,17 @@
 #include <gdt.h>
 #include <idt.h>
-#include <libc/puts.h>
+extern void puts(char *str);
 
 void kmain(void) {
     load_gdt();
+    puts("loaded GDT");
     load_idt();
-    while (1) {
-
+    clear();
+    puts("Loaded IDT");
+    while (1)
+    {
+        /* code */
     }
+    
     return;
 }
