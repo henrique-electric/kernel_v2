@@ -1,1 +1,0 @@
-qemu_out = %x{qemu-img create -f raw disk.img 256M}
