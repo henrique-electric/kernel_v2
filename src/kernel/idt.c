@@ -1,17 +1,15 @@
 #include <idt.h>
 
-static struct gate_descriptor handlers[256];
+static struct gate_descriptor handlers[255];
 
 static struct idtr idt_table = {
-    .size = (uint16_t) (sizeof(struct gate_descriptor) * 256) - 1,
+    .size = (uint16_t) sizeof(handlers) - 1,
     .offset = (uint32_t) handlers
 };
 
 
 void handler_isr(int id) {
-    while(1) {
-
-    }
+    return;
 }
 
 void set_entry(uint32_t handler, uint8_t index) {
@@ -24,9 +22,10 @@ void set_entry(uint32_t handler, uint8_t index) {
 
 extern void isr_0();
 void load_idt(void) {
-    for (uint8_t i = 0; i < 256; i++)
+    for (uint8_t i = 0; i < 253; i++)
         set_entry((uint32_t) isr_0, i);
     
-    asm volatile("lidt (%0)" : : "r" (&idt_table));
+    asm volatile("lidt (%0)" : : "m" (idt_table));
     asm volatile("sti");
+    return;
 }
