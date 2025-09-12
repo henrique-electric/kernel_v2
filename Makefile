@@ -1,17 +1,18 @@
 CC = gcc
 CC_FLAGS = -m32 -nostdlib -fno-pic -ffreestanding -c -fno-stack-protector -Iinclude/
 LINKER_FLAGS = -m elf_i386
-OBJ = build/kernel.o build/entry.o build/gdt.o build/puts.o build/idt.o
+OBJ = build/kernel.o build/entry.o build/gdt.o build/puts.o build/idt.o build/isr0.o
 ASM = nasm
 
 .PHONY: clean
 
 all:
 	$(ASM) -f elf32 src/kernel/entry.asm -o build/entry.o
+	$(ASM) -f elf32 src/kernel/isr0.asm -o build/isr0.o
 	$(CC) $(CC_FLAGS) src/kernel/main.c -o build/kernel.o
 	$(CC) $(CC_FLAGS) src/kernel/gdt.c -o build/gdt.o
 	$(CC) $(CC_FLAGS) src/libc/puts.c -o build/puts.o
-	$(CC) $(CC_FLAGS) src/idt.c -o build/idt.o
+	$(CC) $(CC_FLAGS) src/kernel/idt.c -o build/idt.o
 	ld $(LINKER_FLAGS) -T linker.ld $(OBJ) -o iso/boot/kernel.elf
 	grub-mkrescue -o kernel.iso iso 
 
