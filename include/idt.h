@@ -1,5 +1,6 @@
 #pragma once
 #include <stdint.h>
+#include <libc/puts.h>
 
 #define TRAP_GATE 0
 #define INT_GATE  1
@@ -11,7 +12,7 @@ struct gate_descriptor
     uint16_t offset_low;
     uint16_t segment_selector;
     uint8_t reserved;
-    uint8_t ist;
+    uint8_t flags;
     uint16_t offset_high;
 };
 
@@ -22,5 +23,5 @@ struct idtr
     uint32_t offset;
 };
 
-void set_entry(uint32_t handler, uint16_t index);
+void set_entry(uint32_t handler, uint8_t index);
 void load_idt(void);
