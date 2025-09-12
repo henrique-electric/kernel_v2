@@ -17,6 +17,7 @@ bits 32
 extern kmain
 global __entry
 __entry:
+    cli
     mov esp, stack
     call kmain
 
