@@ -3,15 +3,10 @@
 extern void puts(char *str);
 
 void kmain(void) {
-    load_gdt();
-    puts("loaded GDT");
-    load_idt();
-    clear();
-    puts("Loaded IDT");
-    while (1)
-    {
-        /* code */
-    }
-    
-    return;
+  load_gdt();
+  puts("loaded GDT");
+  load_idt();
+  clear();
+  puts("Loaded IDT");
+  return;
 }
