@@ -8,5 +8,7 @@ void kmain(void) {
   load_idt();
   clear();
   puts("Loaded IDT");
+  while (1) {
+  }
   return;
 }
