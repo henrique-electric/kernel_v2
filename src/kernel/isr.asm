@@ -2,8 +2,9 @@ global isr_0
 global isr_21h
 global exceptions_default
 
-
 extern handler_isr
+
+section .text
 isr_0:
     pushad
     push dword 0
