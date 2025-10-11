@@ -1,4 +1,5 @@
 #include <gdt.h>
+#include <asm_wrappers.h>
 
 static struct gdt_entry entries[3] = {
     {0},
@@ -12,6 +13,9 @@ static struct gdt_table table = {
 };
 
 void load_gdt(void) {
-    asm volatile("lgdt (%0)" : : "r" (&table));
+    load_gdt_table(&table);
+
+   // asm volatile("lgdt (%0)" : : "r" (&table));
+   return;
 }
 
