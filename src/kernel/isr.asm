@@ -1,7 +1,8 @@
 global isr_0
+global isr_1
 global isr_21h
+global debug
 global exceptions_default
-
 extern handler_isr
 
 section .text
