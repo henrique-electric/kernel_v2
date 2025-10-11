@@ -2,6 +2,7 @@
 #include <libc/puts.h>
 #include <stdint.h>
 
+
 #define TRAP_GATE 0
 #define INT_GATE 1
 

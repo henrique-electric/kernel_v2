@@ -1,4 +1,5 @@
 #include <idt.h>
+#include <asm_wrappers.h>
 
 extern char get_press(void);
 
@@ -35,7 +36,6 @@ void load_idt(void) {
     set_entry((uint32_t)exceptions_default, i);
 
   set_entry((uint32_t)isr_21h, 0x21);
-  asm volatile("lidt (%0)" : : "m"(idt_table));
-  asm volatile("sti");
+  load_idt_table(&idt_table);
   return;
 }
