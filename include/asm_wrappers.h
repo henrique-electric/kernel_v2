@@ -13,7 +13,9 @@ extern void load_idt_table(void *table);
 // ====================
 
 // ====== ISR handlers ======
-//extern void isr
-
+extern void isr_0(void);
+extern void isr_1(void);
+extern void isr_21h(void);
+extern void exceptions_default(void);
 // =========================
 #endif
