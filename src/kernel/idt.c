@@ -3,18 +3,19 @@
 
 extern char get_press(void);
 
-static struct gate_descriptor handlers[255];
+static struct gate_descriptor handlers[256];
 
 static struct idtr idt_table = {.size = (uint16_t)sizeof(handlers) - 1,
                                 .offset = (uint32_t)handlers};
 
+
 void handler_isr(int id) {
-  if (id == 0x21) {
-    puts("Key pressed\n");
+  if (id == 0x33) {
+    puts("Key pressed");
   }
 
   if (id == 0xAF) {
-    puts("Excepion detected");
+    //puts("Excepion detected");
   }
   return;
 }
@@ -28,10 +29,10 @@ void set_entry(uint32_t handler, uint8_t index) {
 }
 
 void load_idt(void) {
-  for (uint8_t i = 0; i < 0xFF; i++)
+  for (uint8_t i = 0; i < 0x1F; i++)
     set_entry((uint32_t)exceptions_default, i);
 
-  //set_entry((uint32_t)isr_21h, 0x21);
+  set_entry((uint32_t)isr_21h, 0x12);
   load_idt_table(&idt_table);
   return;
 }

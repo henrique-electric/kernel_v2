@@ -1,6 +1,7 @@
 #include <gdt.h>
 #include <idt.h>
 extern void puts(char *str);
+extern int key;
 
 void kmain(void) {
   load_gdt();
@@ -8,7 +9,10 @@ void kmain(void) {
   load_idt();
   clear();
   puts("Loaded IDT");
-  while (1) {
+  while (1)
+  {
+    /* code */
   }
+  
   return;
 }
