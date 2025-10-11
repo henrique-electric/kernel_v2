@@ -21,5 +21,5 @@ struct idtr {
   uint32_t offset;
 } __attribute__((packed));
 
-void set_entry(uint32_t handler, uint8_t index);
-void load_idt(void);
+extern void set_entry(uint32_t handler, uint8_t index);
+extern void load_idt(void);
