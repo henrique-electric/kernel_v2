@@ -4,6 +4,7 @@ global load_idt_table
 section .text
 load_idt_table:
     push ebp
+    mov ebp, esp
     mov eax, [ebp + 8]
     lidt [eax]
     pop ebp
@@ -12,6 +13,7 @@ load_idt_table:
 
 load_gdt_table:
     push ebp
+    mov ebp, esp
     mov eax, [ebp + 8]
     lgdt [eax]
     pop ebp

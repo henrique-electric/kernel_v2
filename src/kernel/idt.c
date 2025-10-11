@@ -27,15 +27,11 @@ void set_entry(uint32_t handler, uint8_t index) {
   handlers[index].offset_high = (handler >> 16) & 0xFFFF; // upper 16 bits
 }
 
-extern void isr_0();
-extern void isr_21h();
-extern void exceptions_default();
-
 void load_idt(void) {
-  for (uint8_t i = 0; i < 0x1F; i++)
+  for (uint8_t i = 0; i < 0xFF; i++)
     set_entry((uint32_t)exceptions_default, i);
 
-  set_entry((uint32_t)isr_21h, 0x21);
+  //set_entry((uint32_t)isr_21h, 0x21);
   load_idt_table(&idt_table);
   return;
 }
