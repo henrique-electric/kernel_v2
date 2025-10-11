@@ -6,3 +6,4 @@ disk.img
 *.iso
 .cache
 iso/boot/kernel.elf
+.DS_STORE
