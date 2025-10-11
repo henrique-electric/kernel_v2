@@ -20,7 +20,10 @@ all:
 	$(CC) $(CC_FLAGS) src/kernel/idt.c -o build/idt.o
 	$(CC) $(CC_FLAGS) src/kernel/tty/clear.c -o build/clear.o
 	ld $(LINKER_FLAGS) -T linker.ld $(OBJ) -o iso/boot/kernel.elf
-	grub-mkrescue -o kernel.iso iso 
+	grub-mkrescue -o kernel.iso iso
+
+mac:
+	podman run --rm -v $(PWD):/kernel build-kernel
 
 qemu:
 	qemu-system-i386 kernel.iso
