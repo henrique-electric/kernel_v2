@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM --platform=x86_64 archlinux:latest
 
 RUN pacman -Syyuu --noconfirm && pacman -S base-devel nasm libisoburn grub mtools --noconfirm
 
