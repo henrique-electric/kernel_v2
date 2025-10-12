@@ -1,112 +1,81 @@
-global isr_0
-global isr_1
-global isr_2
-global isr_3
-global isr_4
-global isr_5
-global isr_6
-global isr_7
-global isr_8
-global isr_9
-global isr_10
-global isr_11
 global debug
 global exceptions_default
 extern handler_isr
 
+; Macro to expand the interrupt definition
 %macro handle_irq 1
+    isr_%+%1:
     pushad
     push dword %1
     call handler_isr
     jmp finish_stub
 %endmacro
 
+; Export globally the interrupts
+%assign i 0
+%rep 48
+    global isr_%+i
+    %assign i i+1
+%endrep
+
 
 section .text
 
-; divide by 0 error
-isr_0:
-  handle_irq(0)
-    
-;Single-step / debug exception
-isr_1:
-  handle_irq(1)
-
-;Non-maskable interrupt
-isr_2:
-  handle_irq(2)
-
-; Breakpoint
-isr_3:
-  handle_irq(3)
-
-; Overflow
-isr_4:
-  handle_irq(4)
-
-; Bound range
-isr_5:
-  handle_irq(5)
-
-; Invalid opcode
-isr_6:
-  handle_irq(6)
-
-; FPU not available
-isr_7:
-  handle_irq(7)
-
-; Double fault
-isr_8:
-  handle_irq(8)
+; ========== Exceptions ===========
+handle_irq 0 ; divide by 0 error
+handle_irq 1 ;Single-step / debug exception
+handle_irq 2 ;Non-maskable interrupt
+handle_irq 3 ; Breakpoint
+handle_irq 4 ; Overflow
+handle_irq 5 ; Bound range
+handle_irq 6 ; Invalid opcode
+handle_irq 7 ; FPU not available
+handle_irq 8 ; Double fault
+handle_irq 9 ; Reserved
+handle_irq 10 ; Invalide TSS
+handle_irq 11 ; Segment not loaded
+handle_irq 12 ; Stack segment error
+handle_irq 13 ; General protection fault
+handle_irq 14 ; Page fault
+handle_irq 15 ; Reserved
+handle_irq 16 ; MF x87 Floating-Point Error
+handle_irq 17 ; AC Alignment Check
+handle_irq 18 ; MC Machine Check
+handle_irq 19 ; XM SIMD Floating-Point Exception
+handle_irq 20 ; VE Virtualization Exception
 
 ; Reserved
-isr_9:
-  handle_irq(9)
+handle_irq 21
+handle_irq 22
+handle_irq 23
+handle_irq 24
+handle_irq 25
+handle_irq 26
+handle_irq 27
+handle_irq 28
+handle_irq 29
+handle_irq 30
+handle_irq 31
+; =============================================
 
-; Invalide TSS
-isr_10:
-  handle_irq(10)
-
-; Segment not loaded
-isr_11:
-  handle_irq(11)
-
-; Stack segment error
-isr_12:
-  handle_irq(12)
-
-; General protection fault
-isr_13:
-  handle_irq(13)
-
-; Page fault
-isr_14:
-  handle_irq(14)
-
-; Reserved
-isr_15:
-  handle_irq(15)
-
-; MF x87 Floating-Point Error
-isr_16:
-  handle_irq(16)
-
-; AC Alignment Check
-isr_17:
-  handle_irq(17)
-  
-; MC Machine Check
-isr_18:
-  handle_irq(18)
-
-; XM SIMD Floating-Point Exception
-isr_19:
-  handle_irq(19)
-
-; VE Virtualization Exception
-isr_20:
-  handle_irq(20)
+; ========= Hardware interrupts ==========
+handle_irq 32 ; System timer
+handle_irq 33 ; Keyboard
+handle_irq 34 ; Chained PIC
+handle_irq 35 ; COM2
+handle_irq 36 ; COM1
+handle_irq 37 ; Sound card / LPT2
+handle_irq 38 ; Floppy disk
+handle_irq 39 ; Parallel port
+handle_irq 40 ; Real-time clock
+handle_irq 41 ; Legacy redirect
+handle_irq 42 ; Reserved
+handle_irq 43 ; Reserved
+handle_irq 44 ; Mouse PS/2
+handle_irq 45 ; FPU
+handle_irq 46 ; Primary ATA disk
+handle_irq 47 ; Secondary ATA disk
+; =======================================
 
 finish_stub:
   add esp, 0x04
