@@ -1,14 +1,13 @@
 #include <gdt.h>
 #include <idt.h>
-extern void puts(char *str);
-extern int key;
+#include <kernel/log.h>
 
 void kmain(void) {
   load_gdt();
-  puts("loaded GDT");
+  log("Loaded GDT", INFO);
   load_idt();
   clear();
-  puts("Loaded IDT");
+  log("Loaded IDT", INFO);
   while (1)
   {
     /* code */
