@@ -6,10 +6,10 @@ extern char get_press(void);
 
 static struct gate_descriptor handlers[256];
 
-static struct idtr idt_table = {.size = (uint16_t)sizeof(handlers) - 1,
-                                .offset = (uint32_t)handlers};
-
-
+static struct idtr idt_table = {
+  .size = (uint16_t)sizeof(handlers) - 1, 
+  .offset = (uint32_t)handlers 
+};
 
 void set_entry(uint32_t handler, uint8_t index) {
   handlers[index].offset_low = handler & 0xFFFF; // lower 16 bits
