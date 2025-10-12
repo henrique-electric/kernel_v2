@@ -7,7 +7,8 @@ extern void log(char *msg, uint8_t type) {
     case ERROR:
         msg_color = 0x0C;
         break;
-    
+    case INFO:
+        msg_color = 0x0F;
     default:
         break;
     }

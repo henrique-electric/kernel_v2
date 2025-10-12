@@ -4,6 +4,7 @@
 
 enum log_type {
     ERROR,
+    INFO,
 };
 
 
