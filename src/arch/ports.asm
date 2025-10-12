@@ -6,10 +6,8 @@ inb:
     push ebp
     push dx
 
-    mov dx, [ebp + 8]
-    
+    mov dx, [ebp + 8]    
     in ax, dx
-
 
     pop dx
     pop ebp
@@ -22,7 +20,6 @@ outb:
 
     mov dx, [ebp + 12]
     mov ax, [ebp + 8]
-
     out dx, ax
 
     pop ax
