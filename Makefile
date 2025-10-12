@@ -1,4 +1,4 @@
-CC = gcc
+CC = clang
 CC_FLAGS = -m32 -nostdlib -fno-pic -ffreestanding -c -fno-stack-protector -Iinclude/
 LINKER_FLAGS = -m elf_i386
 OBJ = build/kernel.o build/entry.o build/gdt.o build/puts.o build/idt.o build/isr.o build/clear.o build/kb.o build/ports.o build/tables.o build/log.o \
