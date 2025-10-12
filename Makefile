@@ -23,6 +23,7 @@ all:
 	$(CC) $(CC_FLAGS) src/kernel/tty/clear.c -o build/clear.o
 	ld $(LINKER_FLAGS) -T linker.ld $(OBJ) -o iso/boot/kernel.elf
 	grub-mkrescue -o kernel.iso iso
+	strip iso/boot/kernel.elf
 
 mac:
 	podman run --rm -v $(PWD):/kernel build-kernel
