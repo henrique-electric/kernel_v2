@@ -1,5 +1,6 @@
 #include <idt.h>
 #include <asm_wrappers.h>
+#include <arch/interrupts.h>
 
 extern char get_press(void);
 
@@ -9,16 +10,6 @@ static struct idtr idt_table = {.size = (uint16_t)sizeof(handlers) - 1,
                                 .offset = (uint32_t)handlers};
 
 
-void handler_isr(int id) {
-  if (id == 0x33) {
-    puts("Key pressed");
-  }
-
-  if (id == 0xAF) {
-    //puts("Excepion detected");
-  }
-  return;
-}
 
 void set_entry(uint32_t handler, uint8_t index) {
   handlers[index].offset_low = handler & 0xFFFF; // lower 16 bits
@@ -28,11 +19,17 @@ void set_entry(uint32_t handler, uint8_t index) {
   handlers[index].offset_high = (handler >> 16) & 0xFFFF; // upper 16 bits
 }
 
-void load_idt(void) {
-  for (uint8_t i = 0; i < 0x1F; i++)
-    set_entry((uint32_t)exceptions_default, i);
+void load_exceptions(void) {
+  EXCEPTIONS_LIST;
+}
 
-  set_entry((uint32_t)isr_21h, 0x12);
+void load_pic_interrupts(void) {
+  PIC_HARDWARE_INTERRUPTS;
+}
+
+void load_idt(void) {
+  load_exceptions();
+  load_pic_interrupts();
   load_idt_table(&idt_table);
   return;
 }
