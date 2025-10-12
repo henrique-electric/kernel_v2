@@ -1,0 +1,5 @@
+- [ ] Setup process logic and schedulling 
+- [ ] Setup TSS
+- [ ] Setup syscall interface
+- [ ] Setup paging
+- [ ] Setup drivers
