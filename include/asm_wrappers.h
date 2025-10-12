@@ -1,5 +1,5 @@
 #ifndef ASM_WRAPPERS_H
-#define ASL_WRAPPERS_H
+#define ASM_WRAPPERS_H
 #include <stdint.h>
 
 // ====== Assembly helpers ========
