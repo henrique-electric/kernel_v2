@@ -4,6 +4,7 @@ global inb
 section .text
 inb:
     push ebp
+    mov ebp, esp
     push dx
 
     mov dx, [ebp + 8]    
@@ -15,6 +16,7 @@ inb:
 
 outb:
     push ebp
+    mov ebp, esp
     push dx
     push ax
 

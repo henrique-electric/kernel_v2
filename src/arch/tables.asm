@@ -12,9 +12,13 @@ load_idt_table:
     ret
 
 load_gdt_table:
+    cli
     push ebp
     mov ebp, esp
     mov eax, [ebp + 8]
     lgdt [eax]
     pop ebp
+    mov ax, 0x10
+    mov ds, ax
+    mov ss, ax
     ret

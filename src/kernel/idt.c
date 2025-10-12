@@ -23,7 +23,7 @@ void set_interrupt_syscall(uint32_t handler, uint8_t index) {
   handlers[index].offset_low = handler & 0xFFFF;
   handlers[index].segment_selector = 0x08;
   handlers[index].reserved = 0;
-  handlers[index].flags = 0x8F;
+  handlers[index].flags = 0xEF;
   handlers[index].offset_high = (handler >> 16) & 0xFFFF;
 }
 

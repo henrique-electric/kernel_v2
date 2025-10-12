@@ -1,16 +1,17 @@
 #include <gdt.h>
 #include <idt.h>
 #include <kernel/log.h>
+#include <kernel/kernel.h>
+
+struct kernel_struct kernel;
 
 void kmain(void) {
   load_gdt();
-  log("Loaded GDT", INFO);
   load_idt();
-  clear();
-  log("Loaded IDT", INFO);
+  init_kernel_struct();
   while (1)
   {
-    /* code */
+    
   }
   
   return;

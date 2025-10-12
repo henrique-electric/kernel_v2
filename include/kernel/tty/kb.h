@@ -10,7 +10,6 @@ struct kernel_kb_buff {
     uint16_t index;
 };
 
-extern char *get_kb_buff(void);
-extern void put_to_buff(char character);
+extern void handle_key_press(void);
 
 #endif
