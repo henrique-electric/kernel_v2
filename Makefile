@@ -27,7 +27,7 @@ all:
 	grub-mkrescue -o kernel.iso iso
 	strip iso/boot/kernel.elf
 
-mac:
+cont:
 	podman run --rm -v $(PWD):/kernel build-kernel
 
 qemu:
