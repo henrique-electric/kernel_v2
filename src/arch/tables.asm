@@ -18,6 +18,8 @@ load_gdt_table:
     mov eax, [ebp + 8]
     lgdt [eax]
     pop ebp
+    mov ax, 0x08
+    mov cs, ax
     mov ax, 0x10
     mov ds, ax
     mov ss, ax

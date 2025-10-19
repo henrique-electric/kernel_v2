@@ -9,10 +9,8 @@ void kmain(void) {
   load_gdt();
   load_idt();
   init_kernel_struct();
-  while (1)
-  {
+  while (1) {
     
-  }
-  
+  } 
   return;
 }

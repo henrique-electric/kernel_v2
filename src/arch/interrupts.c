@@ -3,6 +3,7 @@
 #include <compiler_macros.h>
 #include <kernel/log.h>
 #include <kernel/tty/kb.h>
+#include <arch/cpu.h>
 #include <stdint.h>
 
 void print_dec(uint8_t n) {
@@ -21,9 +22,8 @@ void print_dec(uint8_t n) {
   vga[pos++] = 0x07;
 }
 
-void CDECL handler_isr(int id) {
-  if (id == 13) {
-    log("GPF", ERROR);
-  }
+void CDECL handler_isr(uint32_t id, const struct cpu_interrupt_state *cpu_state) {
+  log("Hello World", INFO);
+  print_dec(id);
   return;
 }

@@ -4,7 +4,7 @@
 
 extern char get_press(void);
 
-static struct gate_descriptor handlers[256];
+static struct gate_descriptor handlers[48];
 
 static struct idtr idt_table = {
   .size = (uint16_t)sizeof(handlers) - 1, 
