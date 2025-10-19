@@ -1,0 +1,9 @@
+*.bin
+*.o
+build
+disk.img
+*.out
+*.iso
+.cache
+iso/boot/kernel.elf
+.DS_STORE

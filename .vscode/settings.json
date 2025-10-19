@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "kb.h": "c",
+        "kernel.h": "c"
+    }
+}
