@@ -6,13 +6,11 @@ extern handler_isr
 %macro handle_irq 1
     isr_%+%1:
     cli
-    pushad
     push dword %1
     call handler_isr
     add esp, 0x04 
-    popad
     sti
-    iretd
+    iret
 
 %endmacro
 
