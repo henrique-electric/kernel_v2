@@ -5,22 +5,15 @@
 #include <compiler_macros.h>
 
 
+/* We need to consider the fact that the members here will be placed
+   at backwards when pushed onto the stack.
+*/
 struct cpu_interrupt_state {
-  uint32_t error_code;
-  uint32_t eip;
+  uint32_t eflags; //  First pushed
   uint16_t cs;
-  uint32_t eflags;
-  uint32_t esp_old;
-  uint32_t eax;
-  uint32_t ecx;
-  uint32_t edx;
-  uint32_t ebx;
-  uint32_t esp;
-  uint32_t ebp;
-  uint32_t esi;
-  uint32_t edi;
+  uint32_t eip;
+  uint32_t error_code; // Last pushed
 } PACKED;
-
 
 #endif // !CPU_H
 
