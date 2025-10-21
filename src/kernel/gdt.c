@@ -14,8 +14,6 @@ static struct gdt_table table = {
 
 void load_gdt(void) {
     load_gdt_table(&table);
-
-   // asm volatile("lgdt (%0)" : : "r" (&table));
    return;
 }
 
