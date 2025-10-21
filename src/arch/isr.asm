@@ -79,5 +79,3 @@ handle_irq 45 ; FPU
 handle_irq 46 ; Primary ATA disk
 handle_irq 47 ; Secondary ATA disk
 ; =======================================
-
-finish_stub:
