@@ -22,6 +22,8 @@ __entry:
     call kmain
 
 
+
+section .bss
 align 4
 resb 8192
 stack:
