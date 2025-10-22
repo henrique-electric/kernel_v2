@@ -1,10 +1,11 @@
 #include <gdt.h>
 #include <asm_wrappers.h>
 
-static struct gdt_entry entries[3] = {
+static struct gdt_entry entries[4] = {
     {0},
     {.limit = 0xFFFF, .base = 0x0000, .base_mid = 0x00, .access = 0x9B, .limit_and_flag = 0xCF, .base_high = 0x00},
     {.limit = 0xFFFF, .base = 0x0000, .base_mid = 0x00, .access = 0x93, .limit_and_flag = 0xCF, .base_high = 0x00},
+    {.limit = 0xFFFF, .base = 0x0000, .base_mid = 0x00, .access = 0x89, .limit_and_flag = 0x00, .base_high = 0x00}  
 };
 
 static struct gdt_table table = {
