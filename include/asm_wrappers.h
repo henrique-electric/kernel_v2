@@ -16,5 +16,6 @@ extern uint16_t inb(uint16_t port);
 // ====== Tables ======
 extern void load_gdt_table(void *table);
 extern void load_idt_table(void *table);
+extern void load_tss_table(void);
 // ====================
 #endif
