@@ -1,7 +1,7 @@
 global load_gdt_table
 global load_idt_table
 global load_tss_table
-
+global save_gdt
 
 section .text
 load_idt_table:
@@ -34,3 +34,13 @@ load_tss_table:
     ltr ax
     pop ebp
     ret
+
+save_gdt:
+  push ebp
+  push ebx
+  mov ebp, esp
+  mov ebx, [ebp + 8]
+  sgdt [ebx]
+  pop ebp
+  pop ebx
+  ret
