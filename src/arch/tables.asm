@@ -17,6 +17,9 @@ load_gdt_table:
     mov ebp, esp
     mov eax, [ebp + 8]
     lgdt [eax]
+    jmp 0x08:.far_jmp_label ; Update code segment register
+    
+  .far_jmp_label:
     pop ebp
     mov ax, 0x10
     mov ds, ax
