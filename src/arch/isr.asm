@@ -11,14 +11,19 @@ extern handler_isr
     call handler_isr
     add esp, 0x04
     popad
-    sti
     iretd
 
 %endmacro
 
+%assign j 48 
+%rep 208
+  handler_isr %+j 
+  %assign j j+1
+%endrep
+
 ; Export globally the interrupts
 %assign i 0
-%rep 48
+%rep 256 
     global isr_%+i
     %assign i i+1
 %endrep
