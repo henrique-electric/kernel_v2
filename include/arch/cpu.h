@@ -3,17 +3,9 @@
 #include <stdint.h>
 #include <asm_wrappers.h>
 #include <compiler_macros.h>
+#include <core_defines.h>
 
-
-struct cpu_interrupt_state {
-  uint32_t error_code;
-  uint32_t eip;
-  uint16_t cs;
-  uint32_t eflags;
-  uint16_t gs;
-  uint16_t fs;
-  uint16_t es;
-  uint16_t ds;
+struct cpu_pushad {
   uint32_t edi;
   uint32_t esi;
   uint32_t ebp;
@@ -24,6 +16,14 @@ struct cpu_interrupt_state {
   uint32_t eax;
 } PACKED;
 
+
+struct interrupt_stub_args {
+  uint32_t vector;
+  uint32_t error_code; // might me a dummy
+  uint32_t eip;
+  uint32_t cs;
+  uint32_t eflags;
+} PACKED;
 
 #endif // !CPU_H
 

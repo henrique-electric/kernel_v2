@@ -3,6 +3,8 @@
 #include <kernel/tty/kb.h>
 #include <asm_wrappers.h>
 #include <kernel/log.h>
+#include <compiler_macros.h>
+#include <arch/cpu.h>
 
 void print_dec(uint8_t n) {
     volatile char* vga = (char*)0xB8000;
@@ -21,9 +23,7 @@ void print_dec(uint8_t n) {
 }
 
 
-void __attribute__((cdecl))handler_isr(int id) {
-  if (id == 13) {
-    log("GPF", ERROR);
-  }
+void CDECL handler_isr(struct interrupt_stub_args cpu_state) {
+  print_dec(cpu_state.cs);
   return;
 }

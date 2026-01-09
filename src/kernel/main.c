@@ -4,11 +4,12 @@
 #include <kernel/kernel.h>
 
 struct kernel_struct kernel;
+extern void print_dec(uint8_t n);
 
 void kmain(void) {
   load_gdt();
   load_idt();
-  init_kernel_struct();
+  //init_kernel_struct();
   while (1)
   {
     

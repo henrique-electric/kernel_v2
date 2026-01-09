@@ -1,0 +1,6 @@
+#ifndef CORE_DEFINES
+#define CORE_DEFINES
+
+#define DUMMY_INTERRUPT_ERRCODE 0xFAFAFAFA
+
+#endif

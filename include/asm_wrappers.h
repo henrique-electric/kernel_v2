@@ -17,4 +17,8 @@ extern uint16_t inb(uint16_t port);
 extern void load_gdt_table(void *table);
 extern void load_idt_table(void *table);
 // ====================
+
+// ====== ISRs ========
+extern void acknowledge_isr(void);
+//=====================
 #endif

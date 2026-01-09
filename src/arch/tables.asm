@@ -1,5 +1,6 @@
 global load_gdt_table
 global load_idt_table
+extern print_dec
 
 section .text
 load_idt_table:
