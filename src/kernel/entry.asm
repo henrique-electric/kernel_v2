@@ -18,7 +18,7 @@ extern kmain
 global __entry
 __entry:
     cli
-    mov esp, stack
+    mov esp, kernel_stack
     call kmain
 
 
@@ -26,4 +26,4 @@ __entry:
 section .bss
 align 4
 resb 8192
-stack:
+kernel_stack:
