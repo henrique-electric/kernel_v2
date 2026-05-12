@@ -1,4 +1,6 @@
-#pragma once
+#ifndef KERNEL_IDT_H
+#define KERNEL_IDT_H
+
 #include <libc/puts.h>
 #include <stdint.h>
 
@@ -51,3 +53,4 @@ extern void set_entry(uint32_t handler, uint8_t index);
  * @brief Loads the IDT into the processor using the `lidt` instruction.
  */
 extern void load_idt(void);
+#endif

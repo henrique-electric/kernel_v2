@@ -1,4 +1,6 @@
-#pragma once
+#ifndef KERNEL_GDT_H
+#define KERNEL_GDT_H
+
 #include <stdint.h>
 #include <compiler_macros.h>
 
@@ -36,3 +38,4 @@ struct gdt_table {
  * @brief Initializes and loads the GDT into the CPU.
  */
 extern void load_gdt(void);
+#endif
