@@ -1,5 +1,5 @@
 #ifndef CPU_H
-// clang-format off
+#define CPU_H
 #include <stdint.h>
 #include <asm_wrappers.h>
 #include <compiler_macros.h>
