@@ -1,0 +1,26 @@
+# Doxyfile 1.9.0
+
+PROJECT_NAME           = "Kernel v2"
+PROJECT_BRIEF          = "A custom 32-bit x86 kernel written in C and Assembly"
+OUTPUT_DIRECTORY       = docs/
+
+INPUT                  = src/ include/ README.md
+RECURSIVE              = YES
+FILE_PATTERNS          = *.c *.h *.asm *.md
+
+USE_MDFILE_AS_MAINPAGE = README.md
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html/
+
+GENERATE_LATEX         = NO
+
+OPTIMIZE_OUTPUT_FOR_C  = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+# Suppress some noise
+QUIET                  = YES
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = NO
