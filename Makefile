@@ -13,15 +13,15 @@ all:
 	$(ASM) -f elf32 src/arch/isr.asm -o build/isr.o
 	$(ASM) -f elf32 src/arch/ports.asm -o build/ports.o
 	$(ASM) -f elf32 src/arch/tables.asm -o build/tables.o
+	$(CC) $(CC_FLAGS) src/arch/interrupts.c -o build/interrupts.o
+	$(CC) $(CC_FLAGS) src/arch/idt.c -o build/idt.o
 	$(CC) $(CC_FLAGS) src/kernel/tty/kb.c -o build/kb.o
 	$(CC) $(CC_FLAGS) src/kernel/log.c -o build/log.o
 	$(CC) $(CC_FLAGS) src/kernel/mem/mem.c -o build/mem.o
 	$(CC) $(CC_FLAGS) src/kernel/kernel.c -o build/kernel.o
-	$(CC) $(CC_FLAGS) src/arch/interrupts.c -o build/interrupts.o
 	$(CC) $(CC_FLAGS) src/kernel/main.c -o build/kmain.o
-	$(CC) $(CC_FLAGS) src/kernel/gdt.c -o build/gdt.o
+	$(CC) $(CC_FLAGS) src/arch/gdt.c -o build/gdt.o
 	$(CC) $(CC_FLAGS) src/kernel/tty/puts.c -o build/puts.o
-	$(CC) $(CC_FLAGS) src/kernel/idt.c -o build/idt.o
 	$(CC) $(CC_FLAGS) src/kernel/tty/clear.c -o build/clear.o
 	ld $(LINKER_FLAGS) -T linker.ld $(OBJ) -o iso/boot/kernel.elf
 	grub-mkrescue -o kernel.iso iso
