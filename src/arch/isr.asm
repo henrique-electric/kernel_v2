@@ -1,8 +1,27 @@
+; ==============================================================================
+; @file isr.asm
+; @brief Interrupt Service Routines (ISRs) for CPU Exceptions and PIC IRQs.
+;
+; This file handles the low-level dispatch of interrupts. It intercepts 
+; hardware interrupts and exceptions, pushes the interrupt number to the stack,
+; and passes control to the C-level unified interrupt handler (`handler_isr`).
+; ==============================================================================
+
 global debug
 global exceptions_default
 extern handler_isr
 
-; Macro to expand the interrupt definition
+; ------------------------------------------------------------------------------
+; @brief Macro to generate ISR entry points.
+; 
+; For a given interrupt number (%1), it generates a label (e.g. `isr_0`),
+; disables interrupts with `cli`, pushes the interrupt number onto the stack
+; as an argument, and calls the global C handler (`handler_isr`). After the C
+; handler returns, it cleans up the stack, re-enables interrupts (`sti`),
+; and returns from the interrupt (`iret`).
+;
+; @param %1 The interrupt or exception vector number.
+; ------------------------------------------------------------------------------
 %macro handle_irq 1
     isr_%+%1:
     cli
@@ -14,7 +33,13 @@ extern handler_isr
 
 %endmacro
 
-; Export globally the interrupts
+; ------------------------------------------------------------------------------
+; @brief Exports the generated `isr_X` labels globally.
+; 
+; Uses a NASM loop to generate `global isr_0` through `global isr_47`, making
+; them visible to the linker and callable from `src/arch/idt.c` using the
+; auto-generated macros in `compiler_macros.h`.
+; ------------------------------------------------------------------------------
 %assign i 0
 %rep 48
     global isr_%+i
