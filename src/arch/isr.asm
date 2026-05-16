@@ -16,8 +16,10 @@ extern handler_isr
 ; 
 ; For a given interrupt number (%1), it generates a label (e.g. `isr_0`),
 ; disables interrupts with `cli`, pushes the interrupt number onto the stack
-; as an argument, and calls the global C handler (`handler_isr`). After the C
-; handler returns, it cleans up the stack, re-enables interrupts (`sti`),
+; as an argument, pushes the registers "AL" and "DX" used to acknowledge the interrupt to
+; the master PIC, and calls the global C handler (`handler_isr`). After the C
+; handler returns it sends the "EOI" to the master PIC, 
+; then it cleans up the stack, re-enables interrupts (`sti`),
 ; and returns from the interrupt (`iret`).
 ;
 ; @param %1 The interrupt or exception vector number.
@@ -26,7 +28,23 @@ extern handler_isr
     isr_%+%1:
     cli
     push dword %1
-    call handler_isr
+  
+    ; Push registers used to acknowledge the interrupt request
+    push dx
+    push al
+    
+    call handler_isr ; Calls the handler for the interrupt
+
+  
+    ; Acknowledges the interrupt to Master PIC
+    mov al, 0x20 
+    mov dx, 0x20
+    out dx, al
+    
+    ; Pops from memory the registers used to acknowledge the interrupt
+    pop al
+    pop dx
+    
     add esp, 0x04 
     sti
     iret
