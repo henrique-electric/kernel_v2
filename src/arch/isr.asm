@@ -30,20 +30,20 @@ extern handler_isr
     push dword %1
   
     ; Push registers used to acknowledge the interrupt request
-    push dx
-    push al
+    push edx
+    push eax
     
     call handler_isr ; Calls the handler for the interrupt
 
   
     ; Acknowledges the interrupt to Master PIC
-    mov al, 0x20 
-    mov dx, 0x20
-    out dx, al
+    mov eax, 0x20 
+    mov edx, 0x20
+    out dx, ax
     
     ; Pops from memory the registers used to acknowledge the interrupt
-    pop al
-    pop dx
+    pop eax
+    pop edx
     
     add esp, 0x04 ; Adds 4 bytes to the stack to remove the irq number identifier 
     
