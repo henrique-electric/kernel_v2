@@ -45,7 +45,9 @@ extern handler_isr
     pop al
     pop dx
     
-    add esp, 0x04 
+    add esp, 0x04 ; Adds 4 bytes to the stack to remove the irq number identifier 
+    
+    ; Enables the interrupt system again and returns from the interrupt
     sti
     iret
 
