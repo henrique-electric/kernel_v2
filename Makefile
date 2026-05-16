@@ -16,6 +16,7 @@ all:
 	$(CC) $(CC_FLAGS) src/arch/interrupts.c -o build/interrupts.o
 	$(CC) $(CC_FLAGS) src/arch/idt.c -o build/idt.o
 	$(CC) $(CC_FLAGS) src/kernel/tty/kb.c -o build/kb.o
+	$(CC) $(CC_FLAGS) src/kernel/tty/puts.c -o build/puts.o
 	$(CC) $(CC_FLAGS) src/kernel/log.c -o build/log.o
 	$(CC) $(CC_FLAGS) src/kernel/mem/mem.c -o build/mem.o
 	$(CC) $(CC_FLAGS) src/kernel/kernel.c -o build/kernel.o
