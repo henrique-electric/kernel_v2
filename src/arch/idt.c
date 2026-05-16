@@ -14,7 +14,7 @@ extern char get_press(void);
  * 
  * We allocate 48 entries: 32 for CPU exceptions/faults, and 16 for PIC hardware interrupts.
  */
-static struct gate_descriptor handlers[48];
+struct gate_descriptor handlers[48];
 
 /**
  * @brief The IDTR record containing the size and location of the IDT table.

@@ -53,4 +53,9 @@ extern void set_entry(uint32_t handler, uint8_t index);
  * @brief Loads the IDT into the processor using the `lidt` instruction.
  */
 extern void load_idt(void);
+
+/**
+ * @brief Contains all the handlers for each interrupt. defined at src/arch/idt.c 
+ */
+extern struct gate_descriptor handlers[48];
 #endif
